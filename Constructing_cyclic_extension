@@ -1,0 +1,32 @@
+Z:= Integers();
+x:=PolynomialRing(Z).1;  
+ L:=NumberField(PolynomialWithGaloisGroup(12,7));
+l:= Subfields(L,6)[3,1];
+z:=ext<Z|x-1>;
+o:= MaximalOrder(l);
+m:= Discriminant(o);
+r,mr := RayClassGroup(m*z);
+q,mq:= quo<r|12*r>;
+IsCyclic(AbsoluteField(NumberField(AbelianExtension(Inverse(mq)*mr))));
+L1:= AbsoluteField(NumberField(AbelianExtension(Inverse(mq)*mr)));
+Degree(Compositum(L,L1));
+L1;
+OptimisedRepresentation(L1);
+R,mR:= RayClassGroup(m*o);
+qmq q:= quo<r|[Norm(R.i@mR)@@mr: i in [1..Ngens(R)]]>;
+qq;
+sub<r|[Norm(R.i@mR)@@mr: i in [1..Ngens(R)]]>;
+
+r,mr := RayClassGroup(5*m*z);
+quo<r|[Norm(R.i@mR)@@mr: i in [1..Ngens(R)]]>;
+r,mr := RayClassGroup(25*m*z);
+quo<r|[Norm(R.i@mR)@@mr: i in [1..Ngens(R)]]>;
+
+r,mr := RayClassGroup(7*m*z);
+quo<r|[Norm(R.i@mR)@@mr: i in [1..Ngens(R)]]>;  // is multiple of Degree(L)
+q,mq:=quo<r|[Norm(R.i@mR)@@mr: i in [1..Ngens(R)]]>;
+IsCyclic(AbsoluteField(NumberField(AbelianExtension(Inverse(mq)*mr))));
+IsCyclic(q);
+a:=AbsoluteField(NumberField(AbelianExtension(Inverse(mq)*mr)));
+Degree(Compositum(L,a));
+ 
